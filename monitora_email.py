@@ -1,26 +1,26 @@
 import os
+import psutil
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime
 import time
 import logging
-import psutil
 
-
+# Configuração de logging
 logging.basicConfig(level=logging.DEBUG)
 
 # Configurações de e-mail
-from_email = "rrpriceservicos@gmail.com"
-from_password = "wqnu fmtq ofxp awpt"
-to_email = ["anderson.debhora@gmail.com"]
+from_email = "seu_email@gmail.com"
+from_password = "sua_senha"
+to_email = ["destinatario@exemplo.com"]
 subject = "Alerta: Uso de Disco Acima do Limite - E:\\Databases"
 
 # Diretório para monitorar
 disk_path = "E:\\Databases"
 
 # Tamanho total do disco em GB
-disk_total_gb = 10.0
+disk_total_gb = 590.0
 
 # Limite de uso do disco em porcentagem
 alert_threshold_percent = 10.0
@@ -64,12 +64,6 @@ while True:
         # Cria o corpo do e-mail
         body = f"""
         <html>
-        <style>
-        h1. {{"color": "red"}}
-        p. {{"color": "black"}}
-
-        </style>
-
             <body>
                 <h1>Alerta de Uso de Disco</h1>
                 <p>O uso do disco <b>{disk_path}</b> atingiu <b>{used_percent:.2f}%</b> ({used_percent * disk_total_gb / 100:.2f} GB usados).</p>
